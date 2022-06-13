@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let presenter = AutoPresenter()
         let controller = AutoViewController()
@@ -21,6 +20,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.overrideUserInterfaceStyle = .light
         guard let _ = (scene as? UIWindowScene) else { return }
     }
-
 }
 

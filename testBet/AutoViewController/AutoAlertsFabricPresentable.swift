@@ -21,9 +21,11 @@ struct AutoAlertsFabricPresentable {
     }
     
     static func showWarningAlert(in viewController: UIViewController, title: String, message: String) {
-        viewController.present(getWarningAlert(title: title,
-                                   message: message),
-                   animated: true,
-                   completion: nil)
+        viewController.present(
+            getWarningAlert(
+                title: title,
+                message: message),
+            animated: true,
+            completion: nil)
     }
 }

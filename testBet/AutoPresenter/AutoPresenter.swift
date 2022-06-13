@@ -70,24 +70,24 @@ class AutoPresenter: BasePresenter {
         switch error {
         case .failedUrl:
             AutoAlertsFabricPresentable.showWarningAlert(in: delegate,
-                                                            title: "URL is bad",
-                                                            message: "Ops, something happens with URL")
+                                                         title: "URL is bad",
+                                                         message: "Ops, something happens with URL")
         case .emptyCity:
             AutoAlertsFabricPresentable.showWarningAlert(in: delegate,
-                                                            title: "Wrong city",
-                                                            message: "Ops, you typed nonexistent city")
+                                                         title: "Wrong city",
+                                                         message: "Ops, you typed nonexistent city")
         case .httpError(let networkError):
             AutoAlertsFabricPresentable.showWarningAlert(in: delegate,
-                                                            title: "HTTP Error",
-                                                            message: "Id: \(networkError.cod).\nMessage: \(networkError.message)")
+                                                         title: "HTTP Error",
+                                                         message: "Id: \(networkError.cod).\nMessage: \(networkError.message)")
         case .emptyCoordinates:
             AutoAlertsFabricPresentable.showWarningAlert(in: delegate,
-                                                            title: "Wrong coordinates",
-                                                            message: "Ops, you are on nonexistent coordinates")
+                                                         title: "Wrong coordinates",
+                                                         message: "Ops, you are on nonexistent coordinates")
         default:
             AutoAlertsFabricPresentable.showWarningAlert(in: delegate,
-                                                            title: "Ops",
-                                                            message: "Something goes wrong")
+                                                         title: "Ops",
+                                                         message: "Something goes wrong")
         }
     }
 }

@@ -13,14 +13,19 @@ protocol BaseController: AnyObject {
 
 class AutoViewController: UIViewController, PresenterOutput, BaseController {
     
-    
     //MARK: - Properties
     
     private let mainTableView = UITableView()
+    private let activitiView = UIActivityIndicatorView()
     var presenter: BasePresenter?
     private var brands: [MyBrand] = [] {
         didSet {
             mainTableView.reloadData()
+            if brands.isEmpty {
+                activitiView.isHidden = false
+            } else {
+                activitiView.isHidden = true
+            }
         }
     }
     
@@ -31,9 +36,9 @@ class AutoViewController: UIViewController, PresenterOutput, BaseController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpTableView()
-        presenter?.performData()
         registerCellAndHeader()
-        
+        setUpActivitiView()
+        presenter?.performData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -58,6 +63,13 @@ class AutoViewController: UIViewController, PresenterOutput, BaseController {
         view.addSubview(mainTableView)
     }
     
+    private func setUpActivitiView() {
+        activitiView.translatesAutoresizingMaskIntoConstraints = false
+        activitiView.style = .large
+        activitiView.startAnimating()
+        view.addSubview(activitiView)
+    }
+    
     private func registerCellAndHeader() {
         mainTableView.register(CarTableViewCell.self, forCellReuseIdentifier: CarTableViewCell.cellId)
         mainTableView.register(BrandTableHeaderView.self, forHeaderFooterViewReuseIdentifier: BrandTableHeaderView.headerId)
@@ -78,7 +90,10 @@ class AutoViewController: UIViewController, PresenterOutput, BaseController {
                 mainTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.safeAreaInsets.top),
                 mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
                 mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
-                mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                
+                activitiView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                activitiView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ]
         )
     }
